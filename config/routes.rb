@@ -1,4 +1,11 @@
 StockQuotes::Application.routes.draw do
+
+  namespace :api, defaults: {format: 'json'}  do
+    namespace :v1 do
+      resources :quotes
+    end
+  end
+
   get 'tags/:tag', to: 'quotes#index', as: :tag
   resources :quotes
 
