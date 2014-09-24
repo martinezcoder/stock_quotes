@@ -5,7 +5,7 @@ module Api
       respond_to :json
 
       def index
-        fields = "id, author, text"
+        fields = "quotes.id, quotes.author, quotes.text"
         if params[:tag]
           quotes = Quote.select(fields).tagged_with(params[:tag])
         else
