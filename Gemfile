@@ -8,6 +8,11 @@ gem 'rails', '3.2.19'
 gem 'sqlite3'
 
 
+group :test, :development do
+  gem 'pry'
+  gem 'pry-byebug'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
