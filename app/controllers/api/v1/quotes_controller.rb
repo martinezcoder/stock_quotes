@@ -5,9 +5,16 @@ module Api
       respond_to :json
 
       def index
-        quotes = Quote.select("id,author,text").all.as_json
+        fields = "id, author, text"
+        if params[:tag]
+          quotes = Quote.select(fields).tagged_with(params[:tag])
+        else
+          quotes = Quote.select(fields).all
+        end
+
+        quotes = quotes.as_json
         quotes.each do |q|
-          q[:quote_url] = api_v1_quote_url(id: q["id"])
+          q[:path] = api_v1_quote_path(id: q["id"])
         end
         respond_with  quote_list: quotes
       end
@@ -16,7 +23,6 @@ module Api
         @quote = Quote.find(params[:id])
         respond_with @quote.attributes.merge({path: api_v1_quote_url})
       end
-
 
     end
   end
