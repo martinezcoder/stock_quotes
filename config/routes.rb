@@ -1,4 +1,9 @@
 StockQuotes::Application.routes.draw do
+  get 'tags/:tag', to: 'quotes#index', as: :tag
+  resources :quotes
+
+  root to: 'quotes#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

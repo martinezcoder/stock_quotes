@@ -1,0 +1,34 @@
+<h1>Listing quotes</h1>
+
+<div id="tag_cloud">
+  <% tag_cloud Quote.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+
+</div>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Author</th>
+    <th>Tag list</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @quotes.each do |quote| %>
+  <tr>
+    <td><%= quote.text %></td>
+    <td><%= quote.author %></td>
+    <td><%= raw quote.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+    <td><%= link_to 'Show', quote %></td>
+    <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+    <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Quote', new_quote_path %>
