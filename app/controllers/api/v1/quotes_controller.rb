@@ -21,7 +21,7 @@ module Api
 
       def show
         @quote = Quote.find(params[:id])
-        respond_with @quote.attributes.merge({path: api_v1_quote_url})
+        respond_with @quote.attributes.merge({path: api_v1_quote_path})
       end
 
     end
