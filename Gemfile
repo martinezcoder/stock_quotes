@@ -11,6 +11,12 @@ gem 'sqlite3'
 group :test, :development do
   gem 'pry'
   gem 'pry-byebug'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 # Gems used only for assets and not required
